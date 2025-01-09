@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MovieSearchPage</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="hdcss">
-            <!-- 맨 위 영화 검색 창 -->
-            <h1>영화 검색</h1>
-            <input class="hdinput" placeholder="영화를 검색하세요..." />
-            <p>북마크 보기</p>
-        </div>
+      <div class="hdcss">
+        <h1>영화 검색</h1>
+        <input class="hdinput" placeholder="영화를 검색하세요..." />
+        <p>북마크 보기</p>
+      </div>
     </header>
-    <main>
-        <div id="movieCard" class="mvCard">
-            <img src="" class="card-img-top" alt="...">
-            <p>영화 제목</p>
-            <p>영화 평점</p>
-        </div>
-        <div id="clickCard" class="clickCd">
-            <img src="" class="card-img-top" alt="...">
+    <main class="main">
+      <div class="Cards">
+        <!-- js에서 변하는 값을 지정하였으니 기존 틀은 지우기. 
+         안 하면 빈 뼈대 하나가 맨 앞에 붙음-->
+        <!-- <div id="movieCard" class="mvCard">
+          <img id="poster" src="" class="card-img-top" alt="poster" />
+          <p id="mvtitle" class="main_title">영화 제목</p>
+          <p>평점: <span id="mvaver"></span></p>
+        </div> -->
+      </div>
+
+      <!-- *추후 사용*클릭 시 나오는 상세 페이지 -->
+      <!-- <div id="clickCard" class="clickCd">
+            <img src="" class="card-img-top" alt="poster">
             <p>영화 제목</p>
             <p>영화 소개 내용</p>
             <p>영화 개봉일</p>
             <p>영화 평점</p>
             <button>북마크 추가</button>
-        </div>
-
-
+        </div> -->
     </main>
 
     <style src="style.css"></style>
     <script type="module" src="main.js"></script>
-</body>
-
+  </body>
 </html>

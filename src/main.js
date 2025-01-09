@@ -15,16 +15,16 @@ const options = {
 
     let url = "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1";
         fetch(url).then(res => res.json()).then(data => {
-            let mise = data['RealtimeCityAir']['row'][0]['IDEX_NM'];
-            $('#msg').text(mise);
-        })
+        //     let mise = data['RealtimeCityAir']['row'][0]['IDEX_NM'];
+        //     $('#msg').text(mise);
+        // })
 
-        let docs = await getDocs(collection(db, "albums"));
-        docs.forEach((doc) => {
-            let row = doc.data();
+        // let docs = await getDocs(collection(db, "albums"));
+        // docs.forEach((doc) => {
+        //     let row = doc.data();
 
-            let image = row['image'];
-            let title = row['title'];
-            let content = row['content'];
-            let date = row['date'];
+        //     let image = row['image'];
+        //     let title = row['title'];
+        //     let content = row['content'];
+        //     let date = row['date'];
         });

@@ -54,3 +54,23 @@ function popularMovie() {
     });
 }
 popularMovie();
+
+// 시도 1. 사용자 검색 기능 구현
+const searchInput = document.querySelector(".hdinput");
+const values = searchInput.value;
+// 영화 데이터 배열 - 27번
+// let rows = data["results"];
+
+// 검색어에 따라 영화 필터링 하는 함수
+function filterMovies(values) {
+  rows.forEach((Cards) => {
+    const isVisible = Cards.title.toUpperCase().includes(values);
+    Cards.classList.toggle("hide", isVisible);
+  });
+}
+
+// 검색 입력 이벤트리스너 등록
+searchInput.addEventListener("input", function (e) {
+  const values = e.target.value.toUpperCase();
+  filterMovies(values);
+});

@@ -9,22 +9,19 @@
 
   <body>
     <header>
-      <div class="hdcss">
+      <form class="hdcss">
         <h1>영화 검색</h1>
-        <input class="hdinput" placeholder="영화를 검색하세요..." />
+        <label for="search"></label>
+        <input
+          class="hdinput"
+          placeholder="영화를 검색하세요..."
+          onkeyup="enterkeySearch()"
+        />
         <p>북마크 보기</p>
-      </div>
+      </form>
     </header>
     <main class="main">
-      <div class="Cards">
-        <!-- js에서 변하는 값을 지정하였으니 기존 틀은 지우기. 
-         안 하면 빈 뼈대 하나가 맨 앞에 붙음-->
-        <!-- <div id="movieCard" class="mvCard">
-          <img id="poster" src="" class="card-img-top" alt="poster" />
-          <p id="mvtitle" class="main_title">영화 제목</p>
-          <p>평점: <span id="mvaver"></span></p>
-        </div> -->
-      </div>
+      <div class="Cards hide"></div>
 
       <!-- *추후 사용*클릭 시 나오는 상세 페이지 -->
       <!-- <div id="clickCard" class="clickCd">

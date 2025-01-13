@@ -7,14 +7,15 @@
 //4. 필터링 적용하기
 //4-1. 버튼을 눌렀을 때, title에 입력한 값이 포함되어 있는지 필터링
 
-const moviesUl = document.querySelector("#movies");
 const btn = document.querySelector(".btn");
 const searchInput = document.querySelector("#searchInput");
 const modal = document.querySelector(".modal");
 const close = document.querySelector(".close");
+const baseImgUrl = "https://image.tmdb.org/t/p/w500";
+const cardSection = document.querySelector(".cards");
 
 let postArray = [];
-console.log(postArray);
+console.log(postArray); // 빈 배열인 게 맞으며, 지금 수준에서는 확인하기 어려움
 
 function fetchData() {
   fetch(
@@ -26,19 +27,28 @@ function fetchData() {
     .then(function (결과) {
       console.log(결과);
 
-      let postArray = 결과.results;
-      displayPost(결과);
+      postArray = 결과.results;
+      // input : 객체 '결과' 중 results의 값 (배열)
+      displayPost(postArray);
     });
 }
 fetchData();
 
+// input : 결과의 results만 담은 배열
 function displayPost(posts) {
-  emptyStr = "";
+  temp_html = "";
 
-  for (let i = 0; i < posts.results.length; i++) {
-    emptyStr += `<li class="item" data-id="${posts.results[i].id}">${posts.results[i].title}</li>`;
+  for (let i = 0; i < posts.length; i++) {
+    temp_html += `
+    <div data-id="${posts[i].id}" class="mvCard">
+         <img id="poster" src="${
+           baseImgUrl + posts[i].poster_path
+         } class="card-img-top alt="poster">
+         <p>${posts[i].title}</p>
+         <p>평점: ${posts[i].vote_average}<span id="mvaver"></span></p>
+    </div>`;
   }
-  moviesUl.innerHTML = emptyStr;
+  cardSection.innerHTML = temp_html;
 }
 
 btn.addEventListener("click", function () {
@@ -51,10 +61,8 @@ btn.addEventListener("click", function () {
   displayPost(filterPosts);
 });
 
-moviesUl.addEventListener("click", function (e) {
-  console.log(e.target);
-
-  // 새롭게 fetching 하는 로직(item 하나에 대해서)
+cardSection.addEventListener("click", function (e) {
+  console.log(e.target.closest(".mvCard"));
 
   modal.style.display = "block";
 });
@@ -62,3 +70,5 @@ moviesUl.addEventListener("click", function (e) {
 close.addEventListener("click", function () {
   modal.style.display = "none";
 });
+
+closest(".mvCard");

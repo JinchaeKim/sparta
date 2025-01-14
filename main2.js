@@ -10,12 +10,13 @@
 const btn = document.querySelector(".btn");
 const searchInput = document.querySelector("#searchInput");
 const modal = document.querySelector(".modal");
-const close = document.querySelector(".close");
+// const close = document.querySelector(".close");
 const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 const cardSection = document.querySelector(".cards");
+const modalSection = document.querySelector(".modal-content");
 
 let postArray = [];
-console.log(postArray); // 빈 배열인 게 맞으며, 지금 수준에서는 확인하기 어려움
+// console.log(postArray); // 빈 배열인 게 맞으며, 지금 수준에서는 확인하기 어려움
 
 function fetchData() {
   fetch(
@@ -33,7 +34,6 @@ function fetchData() {
     });
 }
 fetchData();
-
 // input : 결과의 results만 담은 배열
 function displayPost(posts) {
   temp_html = "";
@@ -61,14 +61,44 @@ btn.addEventListener("click", function () {
   displayPost(filterPosts);
 });
 
+// 모달창 내용 함수
+function displayModal(info) {
+  temp_modal = `<div data-id="${info.id}" class="modalCard">
+         <img id="poster" src="${
+           baseImgUrl + info.poster_path
+         } class="card-img-top alt="poster">
+         <h1>${info.title}</h1>
+         <p>${info.overview}</p>
+         <h3>평점: ${info.vote_average}<span id="mvaver"></span></h3>
+         <span class="close">&times;</span>
+         <button class="book">북마크 추가</button>
+    </div>`;
+
+  modalSection.innerHTML = "";
+  modalSection.insertAdjacentHTML("afterbegin", temp_modal);
+
+  const close = document.querySelector(".close");
+
+  close.addEventListener("click", function (e) {
+    console.log(e.target);
+    modal.style.display = "none";
+    document.body.style.overflow = "scroll";
+  });
+}
+
+// data-id를 가져오기 (변수 선언)
+// postArray의 id와 cardId 비교하기 (find메서드)
 cardSection.addEventListener("click", function (e) {
-  console.log(e.target.closest(".mvCard"));
+  const mvCard = e.target.closest(".mvCard");
+  // console.log(mvCard);
+  const cardID = mvCard.getAttribute("data-id");
+  console.log(cardID);
 
+  const clickModal = postArray.find(function (postArray) {
+    return Number(postArray.id) === Number(cardID);
+  });
+  console.log(clickModal);
+  displayModal(clickModal);
   modal.style.display = "block";
+  document.body.style.overflow = "hidden";
 });
-
-close.addEventListener("click", function () {
-  modal.style.display = "none";
-});
-
-closest(".mvCard");
